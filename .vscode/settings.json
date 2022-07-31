@@ -1,0 +1,12 @@
+{
+    "python.pipenvPath": "/home/andre/.local/share/virtualenvs/quizzify-backend-KS_uv_jN",
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/*.pyc": true,
+        "**/__pycache__": true
+    }
+}
