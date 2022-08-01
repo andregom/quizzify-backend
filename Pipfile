@@ -10,6 +10,7 @@ flask-restx = "*"
 install = "*"
 werkzeug = "==2.0.0"
 nltk = "*"
+requests = "*"
 
 [dev-packages]
 

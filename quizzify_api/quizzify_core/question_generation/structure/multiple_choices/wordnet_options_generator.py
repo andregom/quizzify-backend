@@ -3,37 +3,14 @@ import nltk
 nltk.download('omw-1.4')
 nltk.download('wordnet')
 
-
-def extract_word_from_name(name):
-    return name.split('.')[0]
-
-
-def format_graphy(name):
-    graphy = extract_word_from_name(name)
-    return ' '.join(w.capitalize() for w in graphy.split('_'))
+from utils import format_graphy
+from word import Word
 
 
-class Word():
-
-    def __init__(self, graphy, word_class='noun'):
-        self.term = graphy.lower()
-        self.graphy = format_graphy(graphy)
-        self.word_class = word_class
-
-    def is_a_compound_word(self):
-        return ' ' in self.term
-
-    def format_compund_word(self):
-        self.term = self.term.replace(' ', '_')
-
-    def is_not_the_same_as(self, name):
-        return extract_word_from_name(name) != self.term
-
-
-def get_similar_words_to(idiom, choosen_synset=wn.synsets, lang='por'):
+def get_similar_words_to(expression, choosen_synset=wn.synsets, lang='por'):
     similar_words = []
 
-    word = Word(idiom)
+    word = Word(expression)
 
     if word.is_a_compound_word():
         word.format_compund_word()
@@ -58,6 +35,9 @@ def get_similar_words_to(idiom, choosen_synset=wn.synsets, lang='por'):
 
 
 word = 'Saltwater fish'
+print(get_similar_words_to(word, lang='eng'))
+
+word = 'green'
 print(get_similar_words_to(word, lang='eng'))
 
 """ word = 'rede'
