@@ -3,15 +3,21 @@ from utils import format_graphy, extract_word_from_name
 class Word():
 
     def __init__(self, graphy, word_class='noun'):
-        self.term = graphy.lower()
-        self.graphy = format_graphy(graphy)
+        self.original_graphy = graphy
+        self.to_lower = self.get_to_lower()
+        self.formatted_search_term = self.format_word_as_search_term()
+        self.corrected_graphy = format_graphy(graphy)
         self.word_class = word_class
 
-    def is_a_compound_word(self):
-        return ' ' in self.term
+    def get_to_lower(self):
+        return self.original_graphy.lower()
 
-    def format_compund_word(self):
-        self.term = self.term.replace(' ', '_')
+    def replace_spaces_with_underscores(self, term):
+        return term.replace(' ', '_')
+
+    def format_word_as_search_term(self):
+        word_to_lower = self.to_lower
+        return self.replace_spaces_with_underscores(word_to_lower)
 
     def is_not_the_same_as(self, name):
-        return extract_word_from_name(name) != self.term
+        return extract_word_from_name(name) != self.formatted_search_term

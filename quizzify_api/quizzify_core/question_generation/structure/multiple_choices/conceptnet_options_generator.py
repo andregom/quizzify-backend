@@ -18,11 +18,8 @@ def get_similar_words_to(expression):
     similar_words = []
 
     word = Word(expression)
-
-    if word.is_a_compound_word():
-        word.format_compund_word()
     
-    term = word.term
+    term = word.formatted_search_term
     print(term)
     
     url = "http://api.conceptnet.io/query?node=/c/en/%s/n&rel=/r/PartOf&start=/c/en%s&limit=5"%(term, term)

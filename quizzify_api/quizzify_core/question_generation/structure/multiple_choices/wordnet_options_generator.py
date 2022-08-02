@@ -12,11 +12,12 @@ def get_similar_words_to(expression, choosen_synset=wn.synsets, lang='por'):
 
     word = Word(expression)
 
-    if word.is_a_compound_word():
-        word.format_compund_word()
+    # if word.is_a_compound_word():
+    #     word.format_compund_word()
 
-    term = word.term
+    term = word.formatted_term
     print(term)
+    print(word.corrected_graphy)
     syns = choosen_synset(term, 'n', lang=lang)
     hypernyms = syns[0].hypernyms()
     hyponyms = hypernyms[0].hyponyms()
@@ -34,7 +35,7 @@ def get_similar_words_to(expression, choosen_synset=wn.synsets, lang='por'):
     return similar_words
 
 
-word = 'Saltwater fish'
+word = 'saltwater fish'
 print(get_similar_words_to(word, lang='eng'))
 
 word = 'green'
