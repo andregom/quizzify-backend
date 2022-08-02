@@ -11,6 +11,8 @@ install = "*"
 werkzeug = "==2.0.0"
 nltk = "*"
 requests = "*"
+wget = "*"
+sense2vec = "*"
 
 [dev-packages]
 
