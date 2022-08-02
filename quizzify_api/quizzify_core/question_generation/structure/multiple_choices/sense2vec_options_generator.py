@@ -1,18 +1,26 @@
-import sys, os
-import wget
-import tarfile
-import sense2vec
+from sense2vec import Sense2Vec
 
-url = 'https://github.com/explosion/sense2vec/releases/download/v1.0.0/s2v_reddit_2015_md.tar.gz'
-filename = wget.download(url, out = 'sense2vec_weights')
-print(filename)
+from word import Word
+from utils import get_only_first
 
-# dirname = os.path.realpath('.')
+s2v = Sense2Vec().from_disk('s2v_old')
 
-# filename = 's2v_reddit_2015_md.tar.gz'
+option = "Donald Trump"
 
-# filepath = os.path.join(dirname, filename)
+word = Word(option)
 
-# tar = tarfile.open(filename, "r:gz")
-# tar.extractall()
-# tar.close()
+term = word.formatted_search_term
+
+print(term)
+
+sense = s2v.get_best_sense(term)
+
+print('Best sense', sense)
+most_similar = s2v.most_similar(sense, n=12)
+print(most_similar)
+
+for tuple in most_similar:
+    entity = get_only_first(tuple)
+    term = get_only_first(entity, '|')
+    word = Word(term)
+    print(word.corrected_graphy)
