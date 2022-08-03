@@ -15,7 +15,7 @@ def get_similar_words_to(expression, choosen_synset=wn.synsets, lang='por'):
     # if word.is_a_compound_word():
     #     word.format_compund_word()
 
-    term = word.formatted_term
+    term = word.in_search_term_format
     print(term)
     print(word.in_display_format)
     syns = choosen_synset(term, 'n', lang=lang)

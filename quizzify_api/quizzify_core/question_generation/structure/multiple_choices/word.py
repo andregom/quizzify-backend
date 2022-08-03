@@ -1,4 +1,4 @@
-from utils import format_graphy, extract_word_from_name
+from utils import format_graphy, extract_element_from
 
 class Word():
 
@@ -20,7 +20,7 @@ class Word():
         return self.replace_spaces_with_underscores(word_to_lower)
 
     def is_not_the_same_as(self, name):
-        return extract_word_from_name(name) != self.in_search_term_format
+        return extract_element_from(name) != self.in_search_term_format
 
     def is_not_in(self, list):
         return not self.is_in(list)
