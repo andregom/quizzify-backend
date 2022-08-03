@@ -19,7 +19,7 @@ def get_similar_words_to(expression):
 
     word = Word(expression)
     
-    term = word.formatted_search_term
+    term = word.in_search_term_format
     print(term)
     
     url = "http://api.conceptnet.io/query?node=/c/en/%s/n&rel=/r/PartOf&start=/c/en%s&limit=5"%(term, term)

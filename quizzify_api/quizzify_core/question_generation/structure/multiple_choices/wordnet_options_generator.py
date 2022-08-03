@@ -17,7 +17,7 @@ def get_similar_words_to(expression, choosen_synset=wn.synsets, lang='por'):
 
     term = word.formatted_term
     print(term)
-    print(word.corrected_graphy)
+    print(word.in_display_format)
     syns = choosen_synset(term, 'n', lang=lang)
     hypernyms = syns[0].hypernyms()
     hyponyms = hypernyms[0].hyponyms()

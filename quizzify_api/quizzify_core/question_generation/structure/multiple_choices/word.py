@@ -5,8 +5,8 @@ class Word():
     def __init__(self, graphy, word_class='noun'):
         self.original_graphy = graphy
         self.to_lower = self.get_to_lower()
-        self.formatted_search_term = self.format_word_as_search_term()
-        self.corrected_graphy = format_graphy(graphy)
+        self.in_search_term_format = self.format_word_as_search_term()
+        self.in_display_format = format_graphy(graphy)
         self.word_class = word_class
 
     def get_to_lower(self):
@@ -20,4 +20,10 @@ class Word():
         return self.replace_spaces_with_underscores(word_to_lower)
 
     def is_not_the_same_as(self, name):
-        return extract_word_from_name(name) != self.formatted_search_term
+        return extract_word_from_name(name) != self.in_search_term_format
+
+    def is_not_in(self, list):
+        return not self.is_in(list)
+
+    def is_in(self, list):
+        return any(word for word in list if self.to_lower == word.lower())

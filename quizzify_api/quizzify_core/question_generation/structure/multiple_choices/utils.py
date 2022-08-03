@@ -8,11 +8,12 @@ def format_graphy(name):
     return ' '.join(w.capitalize() for w in graphy.split('_'))
 
 
-def get_only_first(array, separator = None):
-    if array:
-        if separator:
-            return array.split(separator)[0]
-        
-        return array[0]
+def extract_element_from(collection, separator = None, index=0):
+    if collection:
+        if separator is None:
+            return collection[index]
+            
+        return collection.split(separator)[index]
+       
 
-    return []
+    return collection
