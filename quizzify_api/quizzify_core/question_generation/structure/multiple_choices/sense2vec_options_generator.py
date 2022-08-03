@@ -17,7 +17,8 @@ def get_similar_options(idiomatic_expression, s2v_instance=s2v):
     sense = s2v_instance.get_best_sense(term)
 
     print('Best sense', extract_element_from(sense, '|', 1))
-    most_similar = s2v_instance.most_similar(sense, n=12)
+    most_similar = s2v_instance.most_similar(sense, n=12) \
+        if sense is not None else []
 
     for tuple in most_similar:
         entity = extract_element_from(tuple)
@@ -35,7 +36,7 @@ print(*get_similar_options(option), sep = ", ")
 option = "Lula"
 print(*get_similar_options(option), sep = ", ")
 
-option = "Dilma"
+option = "Dilma Rousef"
 print(*get_similar_options(option), sep = ", ")
 
 option = "natural language processing"
