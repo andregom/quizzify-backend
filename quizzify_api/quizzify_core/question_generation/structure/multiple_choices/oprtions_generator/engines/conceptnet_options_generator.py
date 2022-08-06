@@ -4,8 +4,7 @@ import re
 import random
 import pprint
 
-from utils import format_graphy
-from word import Word
+from .word import Word
 
 def word_is_not_repeated(word, *containers):
     is_not_reapeated = True
@@ -24,11 +23,6 @@ def get_similar_words_to(expression):
     
     url = "http://api.conceptnet.io/query?node=/c/en/%s/n&rel=/r/PartOf&start=/c/en%s&limit=5"%(term, term)
     obj = requests.get(url).json()
-
-
-    # for edge in obj['edges']:
-    #     link = edge['end']['term']
-    #     print(link)
 
 
     for edge in obj['edges']:

@@ -3,11 +3,11 @@ import nltk
 nltk.download('omw-1.4')
 nltk.download('wordnet')
 
-from utils import format_graphy
-from word import Word
+from .utils import format_graphy
+from .word import Word
 
 
-def get_similar_words_to(expression, choosen_synset=wn.synsets, lang='por'):
+def get_similar_words_to(expression, choosen_synset=wn.synsets, lang='eng'):
     similar_words = []
 
     word = Word(expression)
