@@ -1,4 +1,4 @@
-from utils import format_graphy, extract_element_from
+from .utils import format_graphy, extract_element_from
 
 
 class Word():

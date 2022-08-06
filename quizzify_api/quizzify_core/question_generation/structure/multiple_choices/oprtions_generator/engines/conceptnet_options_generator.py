@@ -4,7 +4,7 @@ import re
 import random
 import pprint
 
-from .word import Word
+from .utils.word import Word
 
 def word_is_not_repeated(word, *containers):
     is_not_reapeated = True
@@ -36,9 +36,11 @@ def get_similar_words_to(expression):
             if word.is_not_the_same_as(word2.lower()):
                 words_alike.append(word2)
 
-        print(words_alike)
+            similar_words.extend(words_alike)
+
+        return similar_words
 
 
 
-
-get_similar_words_to('California')
+def test():
+    print(get_similar_words_to('California'))

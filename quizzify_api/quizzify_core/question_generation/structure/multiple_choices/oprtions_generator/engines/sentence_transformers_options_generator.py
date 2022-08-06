@@ -7,7 +7,7 @@ import numpy as np
 
 from sentence_transformers import SentenceTransformer
 
-import sense2vec_options_generator
+from . import sense2vec_options_generator
 
 model = SentenceTransformer('all-MiniLM-L12-v2')
 
@@ -66,14 +66,15 @@ def max_marginal_relevance(
     return [(words[idx], round(float(word_doc_similarity.reshape(1, -1)[0][idx]), 4)) for idx in keywords_idx]
 
 
-final_distracters = max_marginal_relevance(answer_embed, distracter_embed, s2v_distracters, 5)
-filtered_distracters = []
-for dist in final_distracters:
-    filtered_distracters.append(dist[0])
+def test():
+    final_distracters = max_marginal_relevance(answer_embed, distracter_embed, s2v_distracters, 5)
+    filtered_distracters = []
+    for dist in final_distracters:
+        filtered_distracters.append(dist[0])
 
-answer = filtered_distracters[0]
-FilteredDistractors = filtered_distracters[1:]
+    answer = filtered_distracters[0]
+    FilteredDistracters = filtered_distracters[1:]
 
-print(answer)
-print('-'*20)
-print(*FilteredDistractors, sep='\n')
+    print(answer)
+    print('-'*20)
+    print(*FilteredDistracters, sep='\n')

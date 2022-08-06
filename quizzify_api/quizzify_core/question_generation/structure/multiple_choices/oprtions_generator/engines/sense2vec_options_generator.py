@@ -1,8 +1,9 @@
 from pathlib import Path
 from sense2vec import Sense2Vec
 
-from word import Word
-from utils import extract_element_from
+from .utils.word import Word
+from .utils.utils import extract_element_from
+from .utils.permutations import get_all_one_step_edits_of
 
 path = Path(__file__).parent.joinpath('s2v_old')
 s2v = Sense2Vec().from_disk(path)
