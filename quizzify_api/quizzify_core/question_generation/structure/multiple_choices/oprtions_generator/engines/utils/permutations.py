@@ -9,5 +9,10 @@ def get_all_one_step_edits_of(word):
     inserts = [L + c + R for L, R in splits for c in letters]
     return set(deletes + transposes + replaces + inserts)
 
+
+def filter_by_edit_distance(list, word):
+    one_edit_variations = get_all_one_step_edits_of(word)
+    return [word for word in list if word not in one_edit_variations]
+
 def test():
     print(get_all_one_step_edits_of('cat'))

@@ -11,26 +11,10 @@ from . import sense2vec_options_generator
 
 model = SentenceTransformer('all-MiniLM-L12-v2')
 
-original_word = 'Barack Obama'
-
-s2v_distracters = sense2vec_options_generator.get_similar_options_to(
-    original_word)
-
-s2v_distracters.insert(0, original_word)
-
-print(s2v_distracters)
-
-
 def get_annswer_and_distracters_embeddings(answer, candidate_distracters):
     answer_embedding = model.encode([answer])
     distracter_embeddings = model.encode(candidate_distracters)
     return answer_embedding, distracter_embeddings
-
-
-answer_embed, distracter_embed = get_annswer_and_distracters_embeddings(
-    original_word, s2v_distracters)
-
-# print(answer_embed, distracter_embed)
 
 
 def max_marginal_relevance(
@@ -67,6 +51,23 @@ def max_marginal_relevance(
 
 
 def test():
+
+    original_word = 'Barack Obama'
+
+    s2v_distracters = sense2vec_options_generator.get_similar_options_to(
+        original_word)
+
+    s2v_distracters.insert(0, original_word)
+
+    # print(s2v_distracters)
+
+    
+    answer_embed, distracter_embed = get_annswer_and_distracters_embeddings(
+        original_word, s2v_distracters)
+
+    # print(answer_embed, distracter_embed)
+
+
     final_distracters = max_marginal_relevance(answer_embed, distracter_embed, s2v_distracters, 5)
     filtered_distracters = []
     for dist in final_distracters:

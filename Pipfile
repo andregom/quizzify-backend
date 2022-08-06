@@ -14,8 +14,12 @@ requests = "*"
 wget = "*"
 sense2vec = "*"
 sentence-transformers = "*"
+pandas = "*"
+python-levenshtein = "==0.12.0"
+strsim = "*"
 
 [dev-packages]
+autopep8 = "*"
 
 [requires]
 python_version = "3.8"

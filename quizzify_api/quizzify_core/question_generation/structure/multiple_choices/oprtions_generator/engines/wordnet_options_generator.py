@@ -12,9 +12,9 @@ def get_similar_words_to(expression, choosen_synset=wn.synsets, lang='eng'):
 
     word = Word(expression)
 
-    term = word.in_search_term_format
+    term = word.on_search_term_format
     print(term)
-    print(word.in_display_format)
+    print(word.on_display_format)
     syns = choosen_synset(term, 'n', lang=lang)
     hypernyms = syns[0].hypernyms()
     hyponyms = hypernyms[0].hyponyms()

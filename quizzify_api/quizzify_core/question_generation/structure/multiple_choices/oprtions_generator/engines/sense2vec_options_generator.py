@@ -13,14 +13,14 @@ def get_similar_options_to(idiomatic_expression, s2v_instance=s2v):
 
     word = Word(idiomatic_expression)
 
-    term = word.in_search_term_format
+    term = word.on_search_term_format
 
     print(term)
 
     sense = s2v_instance.get_best_sense(term)
 
     print('Best sense', extract_element_from(sense, '|', 1))
-    most_similar = s2v_instance.most_similar(sense, n=12) \
+    most_similar = s2v_instance.most_similar(sense, n=20) \
         if sense is not None else []
 
     for tuple in most_similar:
@@ -28,7 +28,7 @@ def get_similar_options_to(idiomatic_expression, s2v_instance=s2v):
         term = extract_element_from(entity, '|')
         word = Word(term)
         if word.is_not_in(options_alike):
-            options_alike.append(word.in_display_format)
+            options_alike.append(word.on_display_format)
 
     return options_alike
 
