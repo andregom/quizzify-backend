@@ -17,6 +17,9 @@ sentence-transformers = "*"
 pandas = "*"
 python-levenshtein = "==0.12.0"
 strsim = "*"
+allennlp = "*"
+spacy = "*"
+allennlp-models = "*"
 
 [dev-packages]
 autopep8 = "*"
