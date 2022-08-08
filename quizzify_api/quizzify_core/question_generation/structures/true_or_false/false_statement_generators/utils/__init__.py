@@ -1,2 +1,2 @@
-from . import Sentence
-from . import SubTree
+from . import sentence
+# from . import tree

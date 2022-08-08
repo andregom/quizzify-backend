@@ -20,6 +20,8 @@ strsim = "*"
 allennlp = "*"
 spacy = "*"
 allennlp-models = "*"
+tensorflow = "*"
+transformers = "*"
 
 [dev-packages]
 autopep8 = "*"

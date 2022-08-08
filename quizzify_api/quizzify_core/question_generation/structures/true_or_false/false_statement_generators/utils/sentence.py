@@ -5,7 +5,7 @@ from allennlp.predictors.predictor import Predictor
 from nltk import tokenize
 from nltk.tree import Tree
 
-from tree import TreeClass
+from .tree import TreeClass
 
 predictor = Predictor.from_path(
     "https://storage.googleapis.com/allennlp-public-models/elmo-constituency-parser-2020.02.10.tar.gz"  # ,
@@ -19,7 +19,7 @@ class Sentence():
 
     def __init__(self, phrase):
         self.original_phrase = phrase
-        self.without_punctuation = self.remove_punctuation()
+        self.special_chars_removed = self.remove_punctuation()
         self.parser = self.generate_parser()
         self.tree = self.generate_tree()
 
@@ -32,6 +32,8 @@ class Sentence():
             self.last_verbal_phrase_tree
         )
 
+        self.partial_sentence = self.cut_last_longest_block()
+
     def remove_punctuation(self):
         phrase = self.original_phrase
         special_chars = string.punctuation
@@ -39,7 +41,7 @@ class Sentence():
         return ''.join(filtered_chars)
 
     def generate_parser(self):
-        sentence = self.without_punctuation
+        sentence = self.special_chars_removed
         return predictor.predict(sentence=sentence)
 
     def generate_tree(self):
@@ -102,13 +104,13 @@ def test(sentence):
 
     # original_sentence.visualize_tree()
 
-    print(original_sentence.without_punctuation)
+    print(original_sentence.special_chars_removed)
 
     print(original_sentence.last_nominal_phrase)
     print(original_sentence.last_verbal_phrase)
     print(original_sentence.cut_last_longest_block())
 
 
-test('The old woman was sitting under a tree and sipping coffee.')
-print()
-test('The old woman was sitting at a chair, drinking tea and reading a book.')
+# test('The old woman was sitting under a tree and sipping coffee.')
+# print()
+# test('The old woman was sitting at a chair, drinking tea and reading a book.')
