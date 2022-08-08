@@ -38,7 +38,8 @@ def test():
     )
 
     sort_sentences_by_terms_proximity(
-        original_sentence, list_of_falsified_sentences)
+        original_sentence, list_of_falsified_sentences
+    )
 
 
 # test()

@@ -8,8 +8,7 @@ from nltk.tree import Tree
 from .tree import TreeClass
 
 predictor = Predictor.from_path(
-    "https://storage.googleapis.com/allennlp-public-models/elmo-constituency-parser-2020.02.10.tar.gz"  # ,
-    # predictor_name="model.text_field_embedder",
+    "https://storage.googleapis.com/allennlp-public-models/elmo-constituency-parser-2020.02.10.tar.gz"
 )
 
 nlp = spacy.load('en_core_web_sm')
@@ -24,7 +23,8 @@ class Sentence():
         self.tree = self.generate_tree()
 
         self.last_nominal_phrase_tree, self.last_verbal_phrase_tree = \
-            self.get_right_most_nominal_and_verbal_phrase()
+            self.get_right_most_nominal_and_verbal_phrase_trees()
+
         self.last_nominal_phrase = self.flatten_tree(
             self.last_nominal_phrase_tree
         )
@@ -48,30 +48,30 @@ class Sentence():
         tree_as_string = self.parser['trees']
         return Tree.fromstring(tree_as_string)
 
-    def _get_right_most_recursive(
+    def _get_right_most_trees_recursive(
         self,
         tree,
-        last_nominal_phrase=None,
-        last_verbal_phrase=None
+        last_nominal_phrase_tree=None,
+        last_verbal_phrase_tree=None
     ):
         current_tree = TreeClass(tree)
         if current_tree.has_no_subtrees():
-            return last_nominal_phrase, last_verbal_phrase
+            return last_nominal_phrase_tree, last_verbal_phrase_tree
         last_block = current_tree.get_last_block()
         last_subtree = TreeClass(last_block)
         if last_subtree.is_a_nominal_phrase():
-            last_nominal_phrase = last_subtree.tree
+            last_nominal_phrase_tree = last_subtree.tree
         elif last_subtree.is_a_verbal_phrase():
-            last_verbal_phrase = last_subtree.tree
+            last_verbal_phrase_tree = last_subtree.tree
 
-        return self._get_right_most_recursive(
+        return self._get_right_most_trees_recursive(
             last_subtree.tree,
-            last_nominal_phrase,
-            last_verbal_phrase
+            last_nominal_phrase_tree,
+            last_verbal_phrase_tree
         )
 
-    def get_right_most_nominal_and_verbal_phrase(self):
-        return self._get_right_most_recursive(self.tree)
+    def get_right_most_nominal_and_verbal_phrase_trees(self):
+        return self._get_right_most_trees_recursive(self.tree)
 
     def flatten_tree(self, tree):
         final_phrase = None
