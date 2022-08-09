@@ -22,6 +22,10 @@ spacy = "*"
 allennlp-models = "*"
 tensorflow = "*"
 transformers = "*"
+datasets = "*"
+pytorch-lightning = "*"
+sentencepiece = "*"
+tokenizers = "*"
 
 [dev-packages]
 autopep8 = "*"
