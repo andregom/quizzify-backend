@@ -32,7 +32,7 @@ def test_filters(lexeme):
     )
 
     words_filtrd_by_edit_distance = permutations.filter_all_by_edit_distance(
-        distracters
+        words_filtrd_by_edit_distance
     )
 
     levenshtein = engines.utils.levenshtein
@@ -43,10 +43,14 @@ def test_filters(lexeme):
         0.8
     )
 
-    sentence_transformers = engines.sentence_transformers_options_generator
+    filtered_distracters = permutations.filter_subsets(
+        filtered_distracters
+    )
 
-    sentence_transformers.test('Barack Obama')
-    sentence_transformers.test('Will Smith')
+    # sentence_transformers = engines.sentence_transformers_options_generator
+
+    # sentence_transformers.test('Barack Obama')
+    # sentence_transformers.test('Will Smith')
 
     # distracters = sentence_transformers.get_annswer_and_distracters_embeddings(
     #     word.original_graphy,
@@ -54,6 +58,14 @@ def test_filters(lexeme):
     # )
 
     print(filtered_distracters)
+
+
+# def test_one_edit():
+#     permutations = engines.utils.permutations
+
+#     permutations.test()
+
+# test_one_edit()
 
 
 test_filters('USA')
