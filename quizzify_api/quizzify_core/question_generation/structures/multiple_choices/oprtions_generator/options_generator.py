@@ -1,3 +1,0 @@
-from engines import sense2vec_options_generator
-
-sense2vec_options_generator.get_similar_options_to('Barack Obama')
