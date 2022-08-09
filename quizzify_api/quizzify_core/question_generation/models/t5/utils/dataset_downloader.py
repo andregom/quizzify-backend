@@ -5,6 +5,9 @@ from sklearn.utils import shuffle
 from datasets import load_dataset
 from pprint import pprint
 
+
+STORAGE_FOLDER_PATH = Path(__file__).resolve().parents[1].joinpath('storage')
+
 train_dataset = load_dataset('squad', split='train')
 valid_dataset = load_dataset('squad', split='validation')
 
@@ -66,12 +69,8 @@ print(df_validation)
 df_train.head()
 df_validation.head()
 
-storage_folder_path = Path(__file__).resolve().parents[1].joinpath('storage')
-
-print(storage_folder_path.absolute())
-
-train_storage_path = storage_folder_path.joinpath('squad_t5_train.csv')
-validation_storage_path = storage_folder_path.joinpath('squad_t5_validation.csv')
+train_storage_path = STORAGE_FOLDER_PATH.joinpath('squad_t5_train.csv')
+validation_storage_path = STORAGE_FOLDER_PATH.joinpath('squad_t5_validation.csv')
 df_train.to_csv(train_storage_path, index=False)
 df_validation.to_csv(validation_storage_path, index=False)
 

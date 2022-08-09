@@ -15,9 +15,9 @@ Word = engines.utils.word.Word
 # test_sentence_transformers('Rihanna')
 
 
-def test_filters(lexical_unity):
+def test_filters(lexeme):
     
-    word = Word(lexical_unity)
+    word = Word(lexeme)
 
     s2v = engines.sense2vec_options_generator
 
