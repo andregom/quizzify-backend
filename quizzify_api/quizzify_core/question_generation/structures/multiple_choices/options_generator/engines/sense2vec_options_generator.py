@@ -20,7 +20,7 @@ def get_similar_options_to(idiomatic_expression, s2v_instance=s2v):
     sense = s2v_instance.get_best_sense(term)
 
     print('Best sense', extract_element_from(sense, '|', 1))
-    most_similar = s2v_instance.most_similar(sense, n=20) \
+    most_similar = s2v_instance.most_similar(sense, n=30) \
         if sense is not None else []
 
     for tuple in most_similar:
