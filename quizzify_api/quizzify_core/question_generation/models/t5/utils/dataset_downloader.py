@@ -7,7 +7,7 @@ from pprint import pprint
 
 
 
-STORAGE_FOLDER_PATH = Path(__file__).resolve().parents[1].joinpath('storage')
+STORAGE_FOLDER_PATH = Path(__file__).resolve().parents[1].joinpath('storage1')
 
 DATASETS_FOLDER_PATH = STORAGE_FOLDER_PATH.joinpath('datasets')
 
@@ -72,8 +72,8 @@ print(df_validation)
 df_train.head()
 df_validation.head()
 
-train_storage_path = DATASETS_FOLDER_PATH.joinpath('squad_t5_train.csv')
-validation_storage_path = DATASETS_FOLDER_PATH.joinpath('squad_t5_validation.csv')
-df_train.to_csv(train_storage_path, index=False)
-df_validation.to_csv(validation_storage_path, index=False)
+# train_storage_path = DATASETS_FOLDER_PATH.joinpath('squad_t5_train.csv')
+# validation_storage_path = DATASETS_FOLDER_PATH.joinpath('squad_t5_validation.csv')
+# df_train.to_csv(train_storage_path, index=False)
+# df_validation.to_csv(validation_storage_path, index=False)
 

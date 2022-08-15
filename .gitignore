@@ -1,2 +1,4 @@
 quizzify_api/quizzify_core/question_generation/structure/multiple_choices/s2v_old/
 *s2v_*
+
+quizzify_api/quizzify_core/question_generation/models/t5/storage/model/pytorch_model.bin

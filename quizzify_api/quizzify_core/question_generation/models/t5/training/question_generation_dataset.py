@@ -3,7 +3,7 @@ import pandas as pd
 from torch.utils.data import Dataset
 
 class QuestionGenerationDataset(Dataset):
-    def __init__(self, tokenizer, filepath, max_len_inp=512,max_len_out=96,truncate=True):
+    def __init__(self, tokenizer, filepath, max_len_inp=128,max_len_out=96,truncate=True):
         self.path = filepath
 
         self.passage_column = "context"
@@ -11,7 +11,7 @@ class QuestionGenerationDataset(Dataset):
         self.question = "question"
 
         # self.data = pd.read_csv(self.path)
-        self.data = pd.read_csv(self.path, nrows=1000)
+        self.data = pd.read_csv(self.path, nrows=550)
 
         self.truncate = truncate
         self.max_len_input = max_len_inp
@@ -19,7 +19,7 @@ class QuestionGenerationDataset(Dataset):
         self.tokenizer = tokenizer
         self.inputs = []
         self.targets = []
-        self.skippedcount =0
+        self.skippedcount = 0
         self._build()
 
     def __len__(self):
@@ -58,11 +58,11 @@ class QuestionGenerationDataset(Dataset):
 
             # tokenize inputs
             tokenized_inputs = self.tokenizer.batch_encode_plus(
-                [input_], max_length=self.max_len_input, padding='max_length', return_tensors="pt"
+                [input_], max_length=self.max_len_input, pad_to_max_length=True, return_tensors="pt"
             )
             # tokenize targets
             tokenized_targets = self.tokenizer.batch_encode_plus(
-                [target], max_length=self.max_len_output, padding='max_length',return_tensors="pt"
+                [target], max_length=self.max_len_output, pad_to_max_length=True, return_tensors="pt"
             )
 
             self.inputs.append(tokenized_inputs)

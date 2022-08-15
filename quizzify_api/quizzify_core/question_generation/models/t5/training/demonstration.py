@@ -13,14 +13,11 @@ from pprint import pprint
 
 import pandas as pd
 import numpy as np
-import torch
 from torch.utils.data import Dataset, DataLoader
 import pytorch_lightning as pl
 from termcolor import colored
-import textwrap
 
 from transformers import (
-    AdamW,
     T5ForConditionalGeneration,
     T5Tokenizer,
     get_linear_schedule_with_warmup
@@ -57,5 +54,5 @@ print (tokenized_output)
 decoded_output = t5_tokenizer.decode(sample_encoding['input_ids'].squeeze(), skip_special_tokens=True,clean_up_tokenization_spaces=True)
 print (decoded_output)
 
-print (t5_tokenizer.get_vocab())
-print (len(t5_tokenizer.get_vocab().keys()))
+# print (t5_tokenizer.get_vocab())
+# print (len(t5_tokenizer.get_vocab().keys()))

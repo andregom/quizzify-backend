@@ -1,13 +1,14 @@
-import pytorch_lightning as pl
-
 from torch.utils.data import DataLoader
 
+import preparation
+
+# train_dataset, validation_dataset = preparation.train_dataset, preparation.validation_dataset
 
 from transformers import (
     AdamW,
 )
 
-class T5FineTuner(pl.LightningModule):
+class T5FineTuner(preparation.pl.LightningModule):
     def __init__(self, hparams, t5model, t5tokenizer):
         super(T5FineTuner, self).__init__()
         self.save_hyperparameters(hparams)
@@ -53,10 +54,10 @@ class T5FineTuner(pl.LightningModule):
         return loss
 
     def train_dataloader(self):
-        return DataLoader(self.hparams.train_dataset, batch_size=self.hparams.batch_size,num_workers=4)
+        return DataLoader(preparation.train_dataset, batch_size=self.hparams.batch_size,num_workers=4)
 
     def val_dataloader(self):
-        return DataLoader(self.hparams.validation_dataset, batch_size=self.hparams.batch_size,num_workers=4)
+        return DataLoader(preparation.validation_dataset, batch_size=self.hparams.batch_size,num_workers=4)
 
 
     def configure_optimizers(self):
