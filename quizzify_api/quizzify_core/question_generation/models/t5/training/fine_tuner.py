@@ -37,7 +37,7 @@ class T5FineTuner(preparation.pl.LightningModule):
         )
 
         loss = outputs[0]
-        self.log('train_loss',loss)
+        self.log('train_loss', loss)
         return loss
 
     def validation_step(self, batch, batch_idx):

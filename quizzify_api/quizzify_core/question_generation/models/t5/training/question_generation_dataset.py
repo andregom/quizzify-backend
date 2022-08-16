@@ -39,7 +39,7 @@ class QuestionGenerationDataset(Dataset):
 
     def _build(self):
         for idx in range(len(self.data)):
-            passage,answer,target = self.data.loc[idx, self.passage_column],self.data.loc[idx, self.answer], self.data.loc[idx, self.question]
+            passage, answer, target = self.data.loc[idx, self.passage_column], self.data.loc[idx, self.answer], self.data.loc[idx, self.question]
 
             input_ = "context: %s  answer: %s </s>" % (passage, answer)
             target = "question: %s </s>" % (str(target))
