@@ -118,6 +118,7 @@ fill_in_the_blanks = get_fill_in_the_blanks(keyword_sentence_mapping_noun_verbs_
 pprint(fill_in_the_blanks)
 
 root = et.Element("div")
+root.set('style', 'display:flex-box;')
 
 heading = et.Element("h2")
 heading.text = fill_in_the_blanks['title']
@@ -136,10 +137,12 @@ sentences = et.Element("ol")
 sentences.set('style', 'color:brown;')
 for sentence in fill_in_the_blanks['sentences']:
   child=et.Element("li")
-  child.text = sentence[0]
-  child.append(et.Element("input"))
-  child.tail = sentence[1]
-  child.set('style', 'display:inline;')
+  quote = et.Element("div")
+  quote.text = sentence[0]
+  quote.append(et.Element("input"))
+  quote.tail = sentence[1]
+  quote.set('style', 'display:inline-block;')
+  child.append(quote)
   sentences.append(child)
   sentences.append(et.Element("br"))
 
