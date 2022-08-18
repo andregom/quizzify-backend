@@ -1,5 +1,8 @@
 {
     "python.pipenvPath": "/home/andre/.local/share/virtualenvs/quizzify-backend-KS_uv_jN",
+    "python.analysis.extraPaths": [
+        "./quizzify_api"
+    ],
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,

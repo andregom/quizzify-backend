@@ -2,3 +2,5 @@ quizzify_api/quizzify_core/question_generation/structure/multiple_choices/s2v_ol
 *s2v_*
 
 quizzify_api/quizzify_core/question_generation/models/t5/storage/model/pytorch_model.bin
+
+quizzify_api/quizzify_core/question_generation/models/bert_WSD/bert_base/
