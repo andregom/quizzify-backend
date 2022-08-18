@@ -1,8 +1,4 @@
 import requests
-import json
-import re
-import random
-import pprint
 
 from .utils.word import Word
 

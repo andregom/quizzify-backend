@@ -12,13 +12,10 @@ word_list = wrapper.wrap(text=text)
 for element in word_list:
     print(element)
 
-import json
-# import requests
 import string
 import re
 import nltk
 import string
-import itertools
 nltk.download('stopwords')
 nltk.download('wordnet')
 nltk.download('punkt')
@@ -94,7 +91,7 @@ keyword_sentence_mapping_noun_verbs_adj = get_sentences_for_keyword(main_parts_o
 pprint (keyword_sentence_mapping_noun_verbs_adj)
 
 def get_fill_in_the_blanks(sentence_mapping):
-    out={"title":"Fill in the blanks for these sentences with matching words at the top"}
+    out={"title":"Fill in the blank spaces by typing and matching them with the corresponding words at the top"}
     blank_sentences = []
     processed = []
     keys=[]
