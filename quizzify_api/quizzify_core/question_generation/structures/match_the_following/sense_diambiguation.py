@@ -1,7 +1,7 @@
 import re
 import nltk
 import torch
-import statistics
+from pprint import pprint
 
 
 from statistics import mode
@@ -50,10 +50,8 @@ def get_sense(sent):
                                              cls_token=tokenizer.cls_token,
                                              sep_token=tokenizer.sep_token,
                                              cls_token_segment_id=1,
-                                             pad_token_segment_id=0,
-                                             disable_progress_bar=True)[0]
+                                             pad_token_segment_id=0)[0]
 
-    print('Features: ', features)
 
     with torch.no_grad():
         logits = torch.zeros(len(definitions), dtype=torch.double).to(DEVICE)
@@ -108,3 +106,27 @@ for keyword in keyword_sentence_mapping:
     defn = best_sense.definition()
     print(defn)
     keyword_best_sense[keyword] = defn
+
+pprint (keyword_best_sense)
+
+
+import random 
+from prettytable import PrettyTable
+x = PrettyTable()
+all_keywords= list(keyword_best_sense.keys())
+all_definitions = list(keyword_best_sense.values())
+random.shuffle(all_keywords)
+random.shuffle(all_definitions)
+print (all_keywords)
+print (all_definitions)
+
+from IPython.display import Markdown, display
+def printmd(string):
+    display(Markdown(string))
+
+x.field_names=['Word', "Definition"]
+for word,defn in zip(all_keywords,all_definitions):
+  x.add_row([word,defn])
+
+printmd("**Match the following words to their correct meanings.**")
+print (x)
