@@ -120,13 +120,9 @@ random.shuffle(all_definitions)
 print (all_keywords)
 print (all_definitions)
 
-from IPython.display import Markdown, display
-def printmd(string):
-    display(Markdown(string))
-
 x.field_names=['Word', "Definition"]
 for word,defn in zip(all_keywords,all_definitions):
   x.add_row([word,defn])
 
-printmd("**Match the following words to their correct meanings.**")
-print (x)
+print("**Match the following words to their correct meanings.**")
+print(x)

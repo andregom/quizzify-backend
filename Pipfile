@@ -32,6 +32,11 @@ torch = "*"
 [dev-packages]
 autopep8 = "*"
 ipython = "*"
+prettytable = "*"
+gradio = "*"
+onnx = "*"
+onnxruntime = "*"
+fastt5 = "*"
 
 [requires]
 python_version = "3.8"
