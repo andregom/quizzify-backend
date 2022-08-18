@@ -14,18 +14,20 @@ import model_loader as model_loader
 
 from model_loader import DEVICE, tokenizer
 
+from keywords_extract import keyword_sentence_mapping
+
 from preparation import (
     MAX_SEQ_LENGTH,
     GlossSelectionRecord,
     _create_features_from_records
 )
-from extract_keywords import keyword_sentence_mapping
+
 
 
 def get_sense(sent):
-    re_result = re.search(r"\[TGT\](.*)\[TGT\]", sent)
-    # if re_result is None:
-        # print("\nIncorrect input format. Please try again.")
+    re_result = re.search(r"\[tgt\](.*)\[tgt\]", sent)
+    if re_result is None:
+        print("\nIncorrect input format. Please try again.")
 
     ambiguous_word = re_result.group(1).strip()
     results = dict()
@@ -83,26 +85,26 @@ def get_synsets_for_word(word):
 keyword_best_sense = {}
 
 for keyword in keyword_sentence_mapping:
-    # print("\n\n")
-    # print("Original word: ", keyword)
+    print("\n\n")
+    print("Original word: ", keyword)
     try:
         identified_synsets = get_synsets_for_word(keyword)
     except:
         continue
-    # for synset in identified_synsets:
-        # print(synset, "   ", synset.definition())
+    for synset in identified_synsets:
+        print(synset, "   ", synset.definition())
     top_3_sentences = keyword_sentence_mapping[keyword][:3]
     best_senses = []
     for sent in top_3_sentences:
         insensitive_keyword = re.compile(re.escape(keyword), re.IGNORECASE)
         modified_sentence = insensitive_keyword.sub(
-            " [TGT] "+keyword+" [TGT] ", sent, count=1)
+            " [tgt] "+keyword+" [tgt] ", sent, count=1)
         modified_sentence = " ".join(modified_sentence.split())
-        # print("modified sentence ", modified_sentence)
+        print("modified sentence ", modified_sentence)
         best_sense = get_sense(modified_sentence)
         best_senses.append(best_sense)
     best_sense = mode(best_senses)
-    # print("Best sense: ", best_sense)
+    print("Best sense: ", best_sense)
     defn = best_sense.definition()
-    # print(defn)
+    print(defn)
     keyword_best_sense[keyword] = defn

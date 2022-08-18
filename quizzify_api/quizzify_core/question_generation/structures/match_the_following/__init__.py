@@ -1,1 +1,1 @@
-from . import bert_wsd, model_loader, preparation, extract_keywords
+from . import bert_wsd, keywords_extract, model_loader, preparation

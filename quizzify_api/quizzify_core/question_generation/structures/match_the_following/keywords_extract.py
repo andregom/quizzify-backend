@@ -43,7 +43,7 @@ def get_keywords(text):
     try:
         # extractor = pke.unsupervised.MultipartiteRank()
         extractor = pke.unsupervised.YAKE()
-        extractor.load_document(input=text,language='en')
+        extractor.load_document(input=text)
         grammar = r"""
                 NP:
                     {<NOUN|PROPN>+}

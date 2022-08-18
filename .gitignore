@@ -4,3 +4,7 @@ quizzify_api/quizzify_core/question_generation/structure/multiple_choices/s2v_ol
 quizzify_api/quizzify_core/question_generation/models/t5/storage/model/pytorch_model.bin
 
 quizzify_api/quizzify_core/question_generation/models/bert_WSD/bert_base/
+
+quizzify_api/quizzify_core/question_generation/models/bert_base-augmented-batch_size=128-lr=2e-5-max_gloss=6/
+
+quizzify_api/quizzify_core/question_generation/models/bert_base-augmented-batch_size=128-lr=2e-5-max_gloss=6.zip
