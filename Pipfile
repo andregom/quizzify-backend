@@ -28,6 +28,7 @@ sentencepiece = "*"
 tokenizers = "*"
 flashtext = "*"
 torch = "*"
+pke = {git = "https://github.com/boudinfl/pke.git"}
 
 [dev-packages]
 autopep8 = "*"
