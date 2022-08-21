@@ -41,7 +41,6 @@ for element in word_list:
 def get_keywords(text):
     out=[]
     try:
-        # extractor = pke.unsupervised.MultipartiteRank()
         extractor = pke.unsupervised.YAKE()
         extractor.load_document(input=text)
         grammar = r"""
@@ -50,12 +49,6 @@ def get_keywords(text):
             """
         extractor.ngram_selection(n=1)
         extractor.grammar_selection(grammar=grammar)
-        # pos = {'VERB', 'ADJ', 'NOUN'}
-        # pos ={'NOUN'}
-        # stoplist = list(string.punctuation)
-        # stoplist += ['-lrb-', '-rrb-', '-lcb-', '-rcb-', '-lsb-', '-rsb-']
-        # stoplist += stopwords.words('english')
-        # extractor.candidate_selection(n=1,pos=pos, stoplist=stoplist)
         extractor.candidate_selection(n=1)
 
         extractor.candidate_weighting(window=3,
@@ -73,10 +66,8 @@ def get_keywords(text):
     return out
 
 keywords = get_keywords(text)[:8]
-print ("keywords: ", keywords)
 
 sentences = tokenize_sentences(text)
-print (sentences)
 
 def get_sentences_for_keyword(keywords, sentences):
     keyword_processor = KeywordProcessor()

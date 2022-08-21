@@ -15,11 +15,11 @@ app, api = server.app, server.api
 class QuestionsController(Resource):
 
     def get(self, type, id):
-        # try:
+        try:
             return self.get_question(type, id, query = request.get_json())
-        # except Exception as error:
-        #     print(error)
-        #     return HTTPStatus.INTERNAL_SERVER_ERROR
+        except Exception as error:
+            print(error)
+            return HTTPStatus.INTERNAL_SERVER_ERROR
 
     
     @staticmethod
