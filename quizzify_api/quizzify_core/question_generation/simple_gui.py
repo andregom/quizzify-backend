@@ -10,7 +10,7 @@ answer = gr.inputs.Textbox(lines=3, placeholder="Enter answer/keyword here...")
 question = gr.outputs.Textbox(type="auto", label="Question")
 
 
-def generate_question(context, answer):
+def generate_question(context, answer, optmize=False):
     return generate_question_from(context, answer)
 
 
