@@ -8,16 +8,16 @@ import engines
 
 Word = engines.utils.word.Word
 
-# def test_sentence_transformers(lexeme):
-#     word = Word(lexeme)
+# def test_sentence_transformers(lexical_item):
+#     word = Word(lexical_item)
 
     
 # test_sentence_transformers('Rihanna')
 
 
-def test_filters(lexeme):
+def test_filters(lexical_item):
     
-    word = Word(lexeme)
+    word = Word(lexical_item)
 
     s2v = engines.sense2vec_options_generator
 

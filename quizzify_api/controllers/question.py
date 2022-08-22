@@ -28,9 +28,3 @@ class QuestionsController(Resource):
         answer = query.get('answer', '')
         question = generate_question(context, answer)
         return jsonify(question)
-
-
-
-
-
-        

@@ -1,4 +1,5 @@
 import itertools
+from random import shuffle
 from typing import List, Tuple
 import itertools
 from sklearn.metrics.pairwise import cosine_similarity
@@ -7,7 +8,7 @@ import numpy as np
 
 from sentence_transformers import SentenceTransformer
 
-from . import sense2vec_options_generator
+from . import sense2vec_options_generator, wordnet_options_generator
 
 model = SentenceTransformer('all-MiniLM-L12-v2')
 
@@ -50,34 +51,43 @@ def max_marginal_relevance(
     return [(words[idx], round(float(word_doc_similarity.reshape(1, -1)[0][idx]), 4)) for idx in keywords_idx]
 
 
-def test(lexeme):
+def get_similar_options_to(lexical_item, use_worde_net=False):
+    if use_worde_net:
+        serach_engine = wordnet_options_generator
+    else:
+        serach_engine = sense2vec_options_generator
 
-    original_word = lexeme
+    original_word = lexical_item
 
-    s2v_distracters = sense2vec_options_generator.get_similar_options_to(
+    distracters = serach_engine.get_similar_options_to(
         original_word)
 
-    s2v_distracters.insert(0, original_word)
+    answer = original_word
+    distracters.insert(0, original_word)
 
-    # print(s2v_distracters)
+    print(distracters)
 
-    
-    answer_embed, distracter_embed = get_annswer_and_distracters_embeddings(
-        original_word, s2v_distracters)
+    if (len(distracters) > 1):
+        answer_embed, distracter_embed = get_annswer_and_distracters_embeddings(
+            original_word, distracters)
 
-    # print(answer_embed, distracter_embed)
+        # print(answer_embed, distracter_embed)
 
 
-    final_distracters = max_marginal_relevance(answer_embed, distracter_embed, s2v_distracters, 5)
-    filtered_distracters = []
-    for dist in final_distracters:
-        filtered_distracters.append(dist[0])
+        final_distracters = max_marginal_relevance(answer_embed, distracter_embed, distracters, 7)
+        filtered_distracters = []
+        for dist in final_distracters:
+            filtered_distracters.append(dist[0])
 
-    answer = filtered_distracters[0]
-    FilteredDistracters = filtered_distracters[1:]
+        shuffle(filtered_distracters)
+        alternatives = filtered_distracters
+    else:
+        alternatives = distracters
+        
+        
+    FilteredDistracters = {answer: alternatives}
+    # print(answer)
+    # print('-'*20)
+    # print(*FilteredDistracters, sep='\n')
 
-    print(answer)
-    print('-'*20)
-    print(*FilteredDistracters, sep='\n')
-
-    return filtered_distracters
+    return FilteredDistracters
