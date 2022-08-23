@@ -1,5 +1,4 @@
 from pathlib import Path
-from pydoc import resolve
 import pandas as pd
 from sklearn.utils import shuffle
 from datasets import load_dataset
@@ -20,10 +19,6 @@ pprint(sample_validation_dataset)
 context = sample_validation_dataset['context']
 question = sample_validation_dataset['question']
 answer = sample_validation_dataset['answers']['text'][0]
-
-print("context: ", context)
-print("question: ", question)
-print("answer: ", answer)
 
 pd.set_option('display.max_colwidth', None)
 df_train = pd.DataFrame(columns = ['context','answer','question'])
@@ -68,12 +63,4 @@ df_validation = shuffle(df_validation)
 
 print(df_train)
 print(df_validation)
-
-df_train.head()
-df_validation.head()
-
-# train_storage_path = DATASETS_FOLDER_PATH.joinpath('squad_t5_train.csv')
-# validation_storage_path = DATASETS_FOLDER_PATH.joinpath('squad_t5_validation.csv')
-# df_train.to_csv(train_storage_path, index=False)
-# df_validation.to_csv(validation_storage_path, index=False)
 

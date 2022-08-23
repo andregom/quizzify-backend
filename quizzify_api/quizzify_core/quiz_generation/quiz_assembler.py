@@ -16,15 +16,15 @@ def get_questions_and_alternatives(context, keywords):
     }
 
 
-def mount_quiz_from(text):
+def mount_quiz_from(text, quick=False):
     context = text
 
-    if len(text) > 750:
+    if quick or len(text) > 2000:
         from .summarizer import summarize_text
         summarized_text = summarize_text(text)
         context = summarized_text
 
-    if len(text) > 1000:
+    if quick:
         main_keywords = get_keywords(text, summarized_text)
         keywords = main_keywords
     else:

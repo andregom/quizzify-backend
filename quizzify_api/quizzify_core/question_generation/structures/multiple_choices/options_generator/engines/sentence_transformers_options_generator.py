@@ -51,8 +51,8 @@ def max_marginal_relevance(
     return [(words[idx], round(float(word_doc_similarity.reshape(1, -1)[0][idx]), 4)) for idx in keywords_idx]
 
 
-def get_similar_options_to(lexical_item, use_worde_net=False):
-    if use_worde_net:
+def get_similar_options_to(lexical_item, use_word_net=False):
+    if use_word_net:
         serach_engine = wordnet_options_generator
     else:
         serach_engine = sense2vec_options_generator
