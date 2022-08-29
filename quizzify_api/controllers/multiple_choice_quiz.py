@@ -9,19 +9,19 @@ from quizzify_api.server.instance import server
 app, api = server.app, server.api
 
 
-@api.route('/quiz/<type>/<id>', methods=['GET'])
+@api.route('/quiz/<type>/<id>', methods=['GET', 'POST'])
 class QuizController(Resource):
 
-    def get(self, type, id):
+    def post(self, type, id):
         try:
-            return self.get_question(type, id, query = request.get_json())
+            return self.get_quiz(type, id, query = request.get_json())
         except Exception as error:
             print(error)
             return HTTPStatus.INTERNAL_SERVER_ERROR
 
     
     @staticmethod
-    def get_question(type, id, query):
+    def get_quiz(type, id, query):
         from ..quizzify_core.quiz_generation.quiz_assembler import mount_quiz_from
         context = query.get('context', '')
         quiz = mount_quiz_from(context)

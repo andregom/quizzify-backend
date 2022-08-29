@@ -7,12 +7,12 @@ from ..question_generation.structures.multiple_choices.options_generator.engines
 def get_questions_and_alternatives(context, keywords):
     questions = generate_question
     alternatives = get_filtered_similar_options_to
-    return [
-        {
+    return [{
+        'question': {
             'answer': Word(answer).on_display_format,
             'questions': questions(context, answer),
             'alternatives': alternatives(answer)
-        }
+        }}
         for answer
         in keywords
     ]
