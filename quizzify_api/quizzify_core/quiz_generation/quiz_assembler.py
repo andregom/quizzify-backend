@@ -1,19 +1,21 @@
 from .keywords_extractor import get_keywords
 from ..question_generation.question_generator import generate_question
 from ..question_generation.structures.multiple_choices.options_generator.options_generator import get_filtered_similar_options_to
+from ..question_generation.structures.multiple_choices.options_generator.engines.utils.word import Word
 
 
 def get_questions_and_alternatives(context, keywords):
     questions = generate_question
     alternatives = get_filtered_similar_options_to
-    return {
-        answer: {
+    return [
+        {
+            'answer': Word(answer).on_display_format,
             'questions': questions(context, answer),
             'alternatives': alternatives(answer)
         }
         for answer
         in keywords
-    }
+    ]
 
 
 def mount_quiz_from(text, quick=False):

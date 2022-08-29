@@ -71,8 +71,6 @@ def get_similar_options_to(lexical_item, use_word_net=False):
         answer_embed, distracter_embed = get_annswer_and_distracters_embeddings(
             original_word, distracters)
 
-        # print(answer_embed, distracter_embed)
-
 
         final_distracters = max_marginal_relevance(answer_embed, distracter_embed, distracters, 7)
         filtered_distracters = []
@@ -85,9 +83,6 @@ def get_similar_options_to(lexical_item, use_word_net=False):
         alternatives = distracters
         
         
-    FilteredDistracters = {answer: alternatives}
-    # print(answer)
-    # print('-'*20)
-    # print(*FilteredDistracters, sep='\n')
+    FilteredDistracters = alternatives
 
     return FilteredDistracters
